@@ -2,14 +2,16 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import Helmet from 'react-helmet'
 import config from '../utils/siteConfig'
-import Layout from '../components/Layout'
-import Hero from '../components/Hero'
-import Container from '../components/Container'
-import PageBody from '../components/PageBody'
-import TagList from '../components/TagList'
-import PostLinks from '../components/PostLinks'
-import PostDate from '../components/PostDate'
-import SEO from '../components/SEO'
+import {
+  Layout,
+  Hero,
+  Container,
+  PageBody,
+  TagList,
+  PostLinks,
+  PostDate,
+  SEO,
+} from '../components'
 
 const PostTemplate = ({ data, pageContext }) => {
   const {

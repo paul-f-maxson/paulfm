@@ -4,12 +4,14 @@ import orderBy from 'lodash/orderBy'
 import Helmet from 'react-helmet'
 import moment from 'moment'
 import config from '../utils/siteConfig'
-import Layout from '../components/Layout'
-import Card from '../components/Card'
-import CardList from '../components/CardList'
-import PageTitle from '../components/PageTitle'
-import Pagination from '../components/Pagination'
-import Container from '../components/Container'
+import {
+  Layout,
+  Card,
+  CardList,
+  PageTitle,
+  Pagination,
+  Container,
+} from '../components'
 
 const TagTemplate = ({ data, pageContext }) => {
   const posts = orderBy(

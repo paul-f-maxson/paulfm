@@ -1,12 +1,14 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import Layout from '../components/Layout'
-import CardList from '../components/CardList'
-import Card from '../components/Card'
 import Helmet from 'react-helmet'
-import Container from '../components/Container'
-import Pagination from '../components/Pagination'
-import SEO from '../components/SEO'
+import {
+  Layout,
+  CardList,
+  Card,
+  Container,
+  Pagination,
+  SEO,
+} from '../components'
 import config from '../utils/siteConfig'
 
 const Index = ({ data, pageContext }) => {
