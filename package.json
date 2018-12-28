@@ -7,6 +7,7 @@
   "dependencies": {
     "@babel/core": "^7.2.2",
     "babel-plugin-styled-components": "^1.10.0",
+    "babel-preset-gatsby": "^0.1.6",
     "chalk": "^2.4.1",
     "contentful-import": "^7.4.3",
     "gatsby": "^2.0.73",
@@ -48,7 +49,7 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
-    "test": "npm run lint:css && npm run lint:js && npm run check-pretty",
+    "test": "npm run lint:css --scripts-prepend-node-path && npm run lint:js --scripts-prepend-node-path && npm run check-pretty --scripts-prepend-node-path",
     "setup": "node ./bin/setup.js",
     "dev": "gatsby develop",
     "lint:js": "eslint --ext .js,.jsx .",
