@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'
 import Helmet from 'react-helmet'
 import {
   Layout,
+  Welcome,
   CardList,
   Card,
   Container,
@@ -24,21 +25,29 @@ const Index = ({ data, pageContext }) => {
           <title>{`${config.siteTitle} - Page ${currentPage}`}</title>
         </Helmet>
       )}
-      <Container>
-        {isFirstPage ? (
+      {isFirstPage ? (
+        <>
+          <Container>
+            <Welcome />
+          </Container>
+          <Container>
+            <CardList>
+              {posts.map(({ node: post }) => (
+                <Card key={post.id} {...post} />
+              ))}
+            </CardList>
+          </Container>
+        </>
+      ) : (
+        <Container>
           <CardList>
             {posts.map(({ node: post }) => (
               <Card key={post.id} {...post} />
             ))}
           </CardList>
-        ) : (
-          <CardList>
-            {posts.map(({ node: post }) => (
-              <Card key={post.id} {...post} />
-            ))}
-          </CardList>
-        )}
-      </Container>
+        </Container>
+      )}
+
       <Pagination context={pageContext} />
     </Layout>
   )

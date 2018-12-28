@@ -1,4 +1,5 @@
 import Layout from './Layout'
+import Welcome from './Welcome'
 import CardList from './CardList'
 import Card from './Card'
 import Pagination from './Pagination'
@@ -13,6 +14,7 @@ import PostDate from './PostDate'
 
 export {
   Layout,
+  Welcome,
   CardList,
   Card,
   Pagination,
