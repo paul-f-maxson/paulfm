@@ -6,6 +6,8 @@ module.exports = {
   siteUrl: 'https://paulfm.netlify.com', // Site domain. Do not include a trailing slash! If you wish to use a path prefix you can read more about that here: https://www.gatsbyjs.org/docs/path-prefix/
   postsPerHomePage: 7, // Number of posts shown on the 1st page of of the index.js template (home page)
   postsPerPage: 6, // Number of posts shown on paginated pages
+  piecesPerHomePage: 7, // Number of posts shown on the 1st page of of the index.js template (home page)
+  piecesPerPage: 6, // Number of posts shown on paginated pages
   author: 'Paul Maxson', // Author for RSS author segment and SEO schema
   authorUrl: 'https://github.com/paul-f-maxson', // URL used for author and publisher schema, can be a social profile or other personal site
   userTwitter: '@paulmaxson', // Change for Twitter Cards

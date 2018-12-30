@@ -4,27 +4,26 @@ const path = require(`path`)
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
-  const loadPosts = new Promise((resolve, reject) => {
+  const loadPosts = new Promise((resolve) => {
     graphql(`
       {
-        allContentfulPost(
-          sort: { fields: [publishDate], order: DESC }
+        allContentfulPortfolioPiece(
+          sort: { fields: [publicationDate], order: DESC }
           limit: 10000
         ) {
           edges {
             node {
               slug
-              publishDate
+              publicationDate
             }
           }
         }
       }
     `).then(result => {
-      const posts = result.data.allContentfulPost.edges
-      const postsPerFirstPage = config.postsPerHomePage
-      const postsPerPage = config.postsPerPage
+      const pieces = result.data.allContentfulPortfolioPiece.edges
+      const { piecesPerFirstPage, piecesPerPage} = config
       const numPages = Math.ceil(
-        posts.slice(postsPerFirstPage).length / postsPerPage
+        pieces.slice(piecesPerFirstPage).length / piecesPerPage
       )
 
       // Create main home page
@@ -32,7 +31,7 @@ exports.createPages = ({ graphql, actions }) => {
         path: `/`,
         component: path.resolve(`./src/templates/index.js`),
         context: {
-          limit: postsPerFirstPage,
+          limit: piecesPerFirstPage,
           skip: 0,
           numPages: numPages + 1,
           currentPage: 1,
@@ -45,21 +44,21 @@ exports.createPages = ({ graphql, actions }) => {
           path: `/${i + 2}/`,
           component: path.resolve(`./src/templates/index.js`),
           context: {
-            limit: postsPerPage,
-            skip: i * postsPerPage + postsPerFirstPage,
+            limit: piecesPerPage,
+            skip: i * piecesPerPage + piecesPerFirstPage,
             numPages: numPages + 1,
             currentPage: i + 2,
           },
         })
       })
 
-      // Create each individual post
-      posts.forEach((edge, i) => {
-        const prev = i === 0 ? null : posts[i - 1].node
-        const next = i === posts.length - 1 ? null : posts[i + 1].node
+      // Create each individual piece
+      pieces.forEach((edge, i) => {
+        const prev = i === 0 ? null : pieces[i - 1].node
+        const next = i === pieces.length - 1 ? null : pieces[i + 1].node
         createPage({
           path: `${edge.node.slug}/`,
-          component: path.resolve(`./src/templates/post.js`),
+          component: path.resolve(`./src/templates/piece.js`),
           context: {
             slug: edge.node.slug,
             prev,
@@ -78,7 +77,7 @@ exports.createPages = ({ graphql, actions }) => {
           edges {
             node {
               slug
-              post {
+              piece: portfolio_piece {
                 id
               }
             }
@@ -87,12 +86,12 @@ exports.createPages = ({ graphql, actions }) => {
       }
     `).then(result => {
       const tags = result.data.allContentfulTag.edges
-      const postsPerPage = config.postsPerPage
+      const {piecesPerPage} = config
 
       // Create tag pages with pagination if needed
       tags.map(({ node }) => {
-        const totalPosts = node.post !== null ? node.post.length : 0
-        const numPages = Math.ceil(totalPosts / postsPerPage)
+        const totalPieces = node.piece !== null ? node.piece.length : 0
+        const numPages = Math.ceil(totalPieces / piecesPerPage)
         Array.from({ length: numPages }).forEach((_, i) => {
           createPage({
             path:
@@ -100,8 +99,8 @@ exports.createPages = ({ graphql, actions }) => {
             component: path.resolve(`./src/templates/tag.js`),
             context: {
               slug: node.slug,
-              limit: postsPerPage,
-              skip: i * postsPerPage,
+              limit: piecesPerPage,
+              skip: i * piecesPerPage,
               numPages: numPages,
               currentPage: i + 1,
             },
