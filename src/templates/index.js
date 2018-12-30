@@ -13,7 +13,7 @@ import {
 import config from '../utils/siteConfig'
 
 const Index = ({ data, pageContext }) => {
-  const posts = data.allContentfulPost.edges
+  const pieces = data.allContentfulPortfolioPiece.edges
   const { currentPage } = pageContext
   const isFirstPage = currentPage === 1
 
@@ -32,8 +32,8 @@ const Index = ({ data, pageContext }) => {
           </Container>
           <Container>
             <CardList>
-              {posts.map(({ node: post }) => (
-                <Card key={post.id} {...post} />
+              {pieces.map(({ node: piece }) => (
+                <Card key={piece.id} {...piece} />
               ))}
             </CardList>
           </Container>
@@ -41,8 +41,8 @@ const Index = ({ data, pageContext }) => {
       ) : (
         <Container>
           <CardList>
-            {posts.map(({ node: post }) => (
-              <Card key={post.id} {...post} />
+            {pieces.map(({ node: piece }) => (
+              <Card key={piece.id} {...piece} />
             ))}
           </CardList>
         </Container>
@@ -55,8 +55,8 @@ const Index = ({ data, pageContext }) => {
 
 export const query = graphql`
   query($skip: Int!, $limit: Int!) {
-    allContentfulPost(
-      sort: { fields: [publishDate], order: DESC }
+    allContentfulPortfolioPiece(
+      sort: { fields: [publicationDate], order: DESC }
       limit: $limit
       skip: $skip
     ) {
@@ -65,14 +65,14 @@ export const query = graphql`
           title
           id
           slug
-          publishDate(formatString: "MMMM DD, YYYY")
-          heroImage {
+          publicationDate(formatString: "MMMM DD, YYYY")
+          mainImage {
             title
             fluid(maxWidth: 1800) {
               ...GatsbyContentfulFluid_withWebp_noBase64
             }
           }
-          body {
+          discussion {
             childMarkdownRemark {
               html
               excerpt(pruneLength: 80)

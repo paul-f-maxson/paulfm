@@ -70,7 +70,7 @@ exports.createPages = ({ graphql, actions }) => {
     })
   })
 
-  const loadTags = new Promise((resolve, reject) => {
+  const loadTags = new Promise((resolve) => {
     graphql(`
       {
         allContentfulTag {
