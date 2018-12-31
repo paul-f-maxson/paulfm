@@ -132,14 +132,15 @@ module.exports = {
                 ],
               }))
             },
-            query: `{
+            query: `
+              {
             allContentfulPortfolioPiece(limit: 1000, sort: {fields: [publicationDate], order: DESC}) {
                edges {
                  node {
                    title
                    slug
                    publicationDate(formatString: "MMMM DD, YYYY")
-                   shortDescription
+                   discussion
                    }
                  }
                }
