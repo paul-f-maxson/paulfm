@@ -4,7 +4,7 @@ const path = require(`path`)
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
 
-  const loadPosts = new Promise((resolve) => {
+  const loadPosts = new Promise(resolve => {
     graphql(`
       {
         allContentfulPortfolioPiece(
@@ -21,7 +21,7 @@ exports.createPages = ({ graphql, actions }) => {
       }
     `).then(result => {
       const pieces = result.data.allContentfulPortfolioPiece.edges
-      const { piecesPerHomePage, piecesPerPage} = config
+      const { piecesPerHomePage, piecesPerPage } = config
       const numPages = Math.ceil(
         pieces.slice(piecesPerHomePage).length / piecesPerPage
       )
@@ -70,7 +70,7 @@ exports.createPages = ({ graphql, actions }) => {
     })
   })
 
-  const loadTags = new Promise((resolve) => {
+  const loadTags = new Promise(resolve => {
     graphql(`
       {
         allContentfulTag {
@@ -86,7 +86,7 @@ exports.createPages = ({ graphql, actions }) => {
       }
     `).then(result => {
       const tags = result.data.allContentfulTag.edges
-      const {piecesPerPage} = config
+      const { piecesPerPage } = config
 
       // Create tag pages with pagination if needed
       tags.map(({ node }) => {
@@ -111,7 +111,7 @@ exports.createPages = ({ graphql, actions }) => {
     })
   })
 
-  const loadPages = new Promise((resolve, reject) => {
+  const loadPages = new Promise(resolve => {
     graphql(`
       {
         allContentfulPage {

@@ -35,11 +35,6 @@ const Index = ({ data, pageContext }) => {
   return (
     <Layout>
       <SEO />
-      {!isFirstPage && (
-        <Helmet>
-          <title>{`${config.siteTitle} - Page ${currentPage}`}</title>
-        </Helmet>
-      )}
       {isFirstPage ? (
         <>
           <Container>
@@ -48,11 +43,15 @@ const Index = ({ data, pageContext }) => {
           <Container>{cards}</Container>
         </>
       ) : (
-        <Container>
-          <Container>{cards}</Container>
-        </Container>
+        <>
+          <Helmet>
+            <title>{`${config.siteTitle} - Page ${currentPage}`}</title>
+          </Helmet>
+          <Container>
+            <Container>{cards}</Container>
+          </Container>
+        </>
       )}
-
       <Pagination context={pageContext} />
     </Layout>
   )
