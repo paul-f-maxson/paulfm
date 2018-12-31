@@ -98,53 +98,49 @@ module.exports = {
           return ret
         },
         query: `
-    {
-      site {
-        siteMetadata {
-          rssMetadata {
-            site_url
-            feed_url
-            title
-            description
-            image_url
-            author
-            copyright
+          {
+            site {
+              siteMetadata {
+                rssMetadata {
+                  site_url
+                  feed_url
+                  title
+                  description
+                  image_url
+                  author
+                  copyright
+                }
+              }
+            }
           }
-        }
-      }
-    }
-  `,
+        `,
         feeds: [
           {
             serialize(ctx) {
-              const rssMetadata = ctx.query.site.siteMetadata.rssMetadata
-              return ctx.query.allContentfulPost.edges.map(edge => ({
-                date: edge.node.publishDate,
+              const { rssMetadata } = ctx.query.site.siteMetadata
+              return ctx.query.allContentfulPortfolioPiece.edges.map(edge => ({
+                date: edge.node.publicationDate,
                 title: edge.node.title,
-                description: edge.node.body.childMarkdownRemark.excerpt,
+                description: edge.node.discussion,
 
                 url: rssMetadata.site_url + '/' + edge.node.slug,
                 guid: rssMetadata.site_url + '/' + edge.node.slug,
                 custom_elements: [
                   {
-                    'content:encoded': edge.node.body.childMarkdownRemark.html,
+                    'content:encoded': edge.node.discussion,
                   },
                 ],
               }))
             },
             query: `
               {
-            allContentfulPost(limit: 1000, sort: {fields: [publishDate], order: DESC}) {
+            allContentfulPortfolioPiece(limit: 1000, sort: {fields: [publicationDate], order: DESC}) {
                edges {
                  node {
                    title
                    slug
-                   publishDate(formatString: "MMMM DD, YYYY")
-                   body {
-                     childMarkdownRemark {
-                       html
-                       excerpt(pruneLength: 80)
-                     }
+                   publicationDate(formatString: "MMMM DD, YYYY")
+                   discussion
                    }
                  }
                }
