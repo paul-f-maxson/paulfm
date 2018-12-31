@@ -10,7 +10,8 @@ import PageTitle from './PageTitle'
 import PageBody from './PageBody'
 import TagList from './TagList'
 import PostLinks from './PostLinks'
-import PostDate from './PostDate'
+import PublishDate from './PublishDate'
+import CollectionLinks from './CollectionLinks'
 
 export {
   Layout,
@@ -25,5 +26,6 @@ export {
   PageBody,
   TagList,
   PostLinks,
-  PostDate,
+  CollectionLinks,
+  PublishDate,
 }

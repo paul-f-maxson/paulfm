@@ -7,8 +7,8 @@ import {
   Container,
   TagList,
   SEO,
-  PostLinks,
-  PostDate,
+  CollectionLinks,
+  PublishDate,
   PageBody,
   Hero,
 } from '../components'
@@ -35,11 +35,12 @@ const PieceTemplate = ({ data, pageContext }) => {
       <Hero title={title} image={mainImage} height={'50vh'} />
       
       <Container>
+
         {tags && <TagList tags={tags} />}
-        <PostDate date={publicationDate} />
+        <PublishDate date={publicationDate} />
         <PageBody body={discussion} />
       </Container>
-      <PostLinks previous={previous} next={next} />
+      <CollectionLinks previous={previous} next={next} collectionItemName={"Piece"}/>
     </Layout>
   )
 }
