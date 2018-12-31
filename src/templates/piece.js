@@ -7,29 +7,39 @@ import {
   Container,
   TagList,
   SEO,
+  PostLinks,
+  PostDate,
+  PageBody,
+  Hero,
 } from '../components'
 
-const PieceTemplate = ({ data }) => {
-  const {
-    title,
-    slug,
-    tags,
-  } = data.contentfulPortfolioPiece
-  const pieceNode = data.contentfulPiece
+const PieceTemplate = ({ data, pageContext }) => {
+  const { title, slug, tags, discussion, publicationDate, publicationDateISO, shortDescription, mainImage } = data.contentfulPortfolioPiece
+  const { prev: previous, next } = pageContext
+
+  const seoData = {
+    title: title,
+    metaDescription: shortDescription,
+    heroImage: mainImage,
+    publishDate: publicationDate,
+    publishDateISO: publicationDateISO,
+  }
 
   return (
     <Layout>
       <Helmet>
         <title>{`${title} - ${config.siteTitle}`}</title>
       </Helmet>
-      <SEO pagePath={slug} pieceNode={pieceNode} />
+      <SEO pagePath={slug} data={seoData} pieceSEO customTitle/>
 
+      <Hero title={title} image={mainImage} height={'50vh'} />
       
-
       <Container>
         {tags && <TagList tags={tags} />}
-        
+        <PostDate date={publicationDate} />
+        <PageBody body={discussion} />
       </Container>
+      <PostLinks previous={previous} next={next} />
     </Layout>
   )
 }
@@ -39,6 +49,30 @@ export const query = graphql`
     contentfulPortfolioPiece(slug: { eq: $slug }) {
       title
       slug
+      shortDescription
+      publicationDate(formatString: "MMMM DD, YYYY")
+      publicationDateISO: publicationDate(formatString: "YYYY-MM-DD")
+      tags {
+        title
+        id
+        slug
+      }
+      mainImage {
+        title
+        fluid(maxWidth: 1800) {
+          ...GatsbyContentfulFluid_withWebp_noBase64
+        }
+        ogimg: resize(width: 1800) {
+          src
+          width
+          height
+        }
+      }
+      discussion {
+        childMarkdownRemark {
+          html
+        }
+      }
     }
   }
 `
