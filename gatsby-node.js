@@ -21,9 +21,9 @@ exports.createPages = ({ graphql, actions }) => {
       }
     `).then(result => {
       const pieces = result.data.allContentfulPortfolioPiece.edges
-      const { piecesPerFirstPage, piecesPerPage} = config
+      const { piecesPerHomePage, piecesPerPage} = config
       const numPages = Math.ceil(
-        pieces.slice(piecesPerFirstPage).length / piecesPerPage
+        pieces.slice(piecesPerHomePage).length / piecesPerPage
       )
 
       // Create main home page
@@ -31,7 +31,7 @@ exports.createPages = ({ graphql, actions }) => {
         path: `/`,
         component: path.resolve(`./src/templates/index.js`),
         context: {
-          limit: piecesPerFirstPage,
+          limit: piecesPerHomePage,
           skip: 0,
           numPages: numPages + 1,
           currentPage: 1,
@@ -45,7 +45,7 @@ exports.createPages = ({ graphql, actions }) => {
           component: path.resolve(`./src/templates/index.js`),
           context: {
             limit: piecesPerPage,
-            skip: i * piecesPerPage + piecesPerFirstPage,
+            skip: i * piecesPerPage + piecesPerHomePage,
             numPages: numPages + 1,
             currentPage: i + 2,
           },

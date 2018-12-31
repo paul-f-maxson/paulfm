@@ -17,6 +17,21 @@ const Index = ({ data, pageContext }) => {
   const { currentPage } = pageContext
   const isFirstPage = currentPage === 1
 
+  const cards = (
+    <CardList>
+      {pieces.map(({ node: piece }) => {
+        const config = {
+          linkSlug: piece.slug,
+          image: piece.mainImage,
+          title: piece.title,
+          date: piece.publicationDate,
+          body: piece.shortDescription,
+        }
+        return <Card key={piece.id} {...config} />
+      })}
+    </CardList>
+  )
+
   return (
     <Layout>
       <SEO />
@@ -30,21 +45,11 @@ const Index = ({ data, pageContext }) => {
           <Container>
             <Welcome />
           </Container>
-          <Container>
-            <CardList>
-              {pieces.map(({ node: piece }) => (
-                <Card key={piece.id} {...piece} />
-              ))}
-            </CardList>
-          </Container>
+          <Container>{cards}</Container>
         </>
       ) : (
         <Container>
-          <CardList>
-            {pieces.map(({ node: piece }) => (
-              <Card key={piece.id} {...piece} />
-            ))}
-          </CardList>
+          <Container>{cards}</Container>
         </Container>
       )}
 
@@ -65,6 +70,7 @@ export const query = graphql`
           title
           id
           slug
+          shortDescription
           publicationDate(formatString: "MMMM DD, YYYY")
           mainImage {
             title
@@ -75,7 +81,6 @@ export const query = graphql`
           discussion {
             childMarkdownRemark {
               html
-              excerpt(pruneLength: 80)
             }
           }
         }
