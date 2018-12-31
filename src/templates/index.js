@@ -76,12 +76,18 @@ const Index = ({ data, pageContext }) => {
     </CardList>
   )
 
-  return <Layout>
+  return (
+    <Layout>
       <SEO />
-      {isFirstPage ? <>
+      {isFirstPage ? (
+        <>
           <Container>
             <PageTitle>Welcome</PageTitle>
-            <WelcomeBody dangerouslySetInnerHTML={{ __html: shortBio.childMarkdownRemark.html }} />
+            <WelcomeBody
+              dangerouslySetInnerHTML={{
+                __html: shortBio.childMarkdownRemark.html,
+              }}
+            />
             <WelcomeBody>This website hosts his portfolio.</WelcomeBody>
           </Container>
 
@@ -93,14 +99,18 @@ const Index = ({ data, pageContext }) => {
             <SectionTitle>Other Profiles</SectionTitle>
             {externalLinks}
           </Container>
-        </> : <>
+        </>
+      ) : (
+        <>
           <Helmet>
             <title>{`${config.siteTitle} - Page ${currentPage}`}</title>
           </Helmet>
           <Container>{cards}</Container>
-        </>}
+        </>
+      )}
       <Pagination context={pageContext} />
     </Layout>
+  )
 }
 
 export const query = graphql`
