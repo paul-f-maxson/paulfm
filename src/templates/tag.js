@@ -14,20 +14,34 @@ import {
 } from '../components'
 
 const TagTemplate = ({ data, pageContext }) => {
-  const posts = orderBy(
-    data.contentfulTag.post,
+  const pieces = orderBy(
+    data.contentfulTag.piece,
     // eslint-disable-next-line
     [object => new moment(object.publishDateISO)],
     ['desc']
   )
 
   const { title, slug } = data.contentfulTag
-  const numberOfPosts = posts.length
+  const numberOfPosts = pieces.length
   const skip = pageContext.skip
   const limit = pageContext.limit
   const currentPage = pageContext.currentPage
   const isFirstPage = currentPage === 1
 
+  const cards = (
+    <CardList>
+      {pieces.slice(skip, limit * currentPage).map(piece => {
+        const config = {
+          linkSlug: piece.slug,
+          image: piece.mainImage,
+          title: piece.title,
+          date: piece.publishDate,
+          body: piece.shortDescription,
+        }
+        return <Card key={piece.id} {...config} />
+      })}
+    </CardList>
+  )
   return (
     <Layout>
       {isFirstPage ? (
@@ -60,12 +74,7 @@ const TagTemplate = ({ data, pageContext }) => {
           {title}
           &rdquo;
         </PageTitle>
-
-        <CardList>
-          {posts.slice(skip, limit * currentPage).map(post => (
-            <Card {...post} key={post.id} />
-          ))}
-        </CardList>
+        {cards}
       </Container>
       <Pagination context={pageContext} />
     </Layout>
@@ -78,22 +87,21 @@ export const query = graphql`
       title
       id
       slug
-      post {
+      piece: portfolio_piece {
         id
         title
         slug
-        publishDate(formatString: "MMMM DD, YYYY")
-        publishDateISO: publishDate(formatString: "YYYY-MM-DD")
-        heroImage {
+        publishDate: publicationDate(formatString: "MMMM DD, YYYY")
+        publishDateISO: publicationDate(formatString: "YYYY-MM-DD")
+        mainImage {
           title
           fluid(maxWidth: 1800) {
             ...GatsbyContentfulFluid_withWebp_noBase64
           }
         }
-        body {
+        discussion {
           childMarkdownRemark {
             html
-            excerpt(pruneLength: 80)
           }
         }
       }
