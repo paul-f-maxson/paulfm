@@ -9,7 +9,6 @@ import Container from './Container'
 import PageTitle from './PageTitle'
 import PageBody from './PageBody'
 import TagList from './TagList'
-import PostLinks from './PostLinks'
 import PublishDate from './PublishDate'
 import CollectionLinks from './CollectionLinks'
 
@@ -25,7 +24,6 @@ export {
   PageTitle,
   PageBody,
   TagList,
-  PostLinks,
   CollectionLinks,
   PublishDate,
 }
