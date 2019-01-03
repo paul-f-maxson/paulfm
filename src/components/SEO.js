@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import Helmet from 'react-helmet'
 import siteConfig from '../utils/siteConfig'
 
-class SEO extends Component {
+const SEO = () => null
+class _SEO extends Component {
   render() {
     const {
       data,

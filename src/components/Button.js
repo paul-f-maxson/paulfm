@@ -1,13 +1,11 @@
 import styled from 'styled-components';
 
 const Button = styled.div`
-  position: relative;
   display: flex;
   justify-content: space-between;
-  margin: -2em auto 0;
+  margin: 0 auto;
   width: 100%;
-  max-width: ${props => props.theme.sizes.maxWidth};
-  padding: 0 1.5em 2em;
+  max-width: ${props => props.theme.sizes.maxWidthCentered};
   a {
     background: ${props => props.theme.colors.base};
     color: white;

@@ -1,29 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'gatsby'
+import { Button } from './'
 
 const Wrapper = styled.div`
   margin: -2em 0 0 0;
   padding: 0 1.5em 2em;
-`
-
-const Box = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin: 0 auto;
-  width: 100%;
-  max-width: ${props => props.theme.sizes.maxWidthCentered};
-  a {
-    background: ${props => props.theme.colors.base};
-    color: white;
-    padding: 1em;
-    border-radius: 2px;
-    text-decoration: none;
-    transition: 0.2s;
-    &:hover {
-      background: ${props => props.theme.colors.highlight};
-    }
-  }
 `
 
 const PreviousLink = styled(Link)`
@@ -36,21 +18,23 @@ const NextLink = styled(Link)`
   order: 2;
 `
 
-const PostLinks = ({previous, next, collectionItemName}) => {
-    return (
-        <Wrapper>
-            <Box>
-                {previous && (
-                    <PreviousLink to={`/${previous.slug}/`}>
-                        &#8592; Prev {collectionItemName}
+const CollectionLinks = ({ previous, next, collectionItemName }) => {
+  return (
+    <Wrapper>
+      <Button>
+        {previous && (
+          <PreviousLink to={`/${previous.slug}/`}>
+            &#8592; Prev {collectionItemName}
           </PreviousLink>
-                )}
-                {next && (
-                    <NextLink to={`/${next.slug}/`}>Next {collectionItemName} &#8594;</NextLink>
-                )}
-            </Box>
-        </Wrapper>
-    )
+        )}
+        {next && (
+          <NextLink to={`/${next.slug}/`}>
+            Next {collectionItemName} &#8594;
+          </NextLink>
+        )}
+      </Button>
+    </Wrapper>
+  )
 }
 
-export default PostLinks
+export default CollectionLinks

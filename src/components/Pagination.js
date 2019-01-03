@@ -1,7 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'gatsby'
-import Button  from './Button';
+import Button from './Button'
+
+const Wrapper = styled(Button)`
+  position: relative;
+`
 
 const PreviousLink = styled(Link)`
   margin-right: auto;
@@ -40,7 +44,7 @@ class Pagination extends React.Component {
     const nextPageLink = isLast ? null : `${pathPrefix}/${nextPageNum}/`
 
     return (
-      <Button>
+      <Wrapper>
         {!isFirst && (
           <PreviousLink to={prevPageLink}>&#8592; Prev Page</PreviousLink>
         )}
@@ -50,7 +54,7 @@ class Pagination extends React.Component {
           </PageIndicator>
         )}
         {!isLast && <NextLink to={nextPageLink}>Next Page &#8594;</NextLink>}
-      </Button>
+      </Wrapper>
     )
   }
 }
