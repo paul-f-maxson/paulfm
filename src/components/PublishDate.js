@@ -13,7 +13,7 @@ const Date = styled.p`
   }
 `
 
-const PostDate = props => {
+const PublishDate = props => {
   return (
     <Wrapper>
       <Date>
@@ -23,4 +23,4 @@ const PostDate = props => {
   )
 }
 
-export default PostDate
+export default PublishDate

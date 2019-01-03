@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Link } from 'gatsby'
 import Img from 'gatsby-image'
 
-const Style = styled.li`
+const CardStyle = styled.li`
   position: relative;
   border: 1px solid ${props => props.theme.colors.secondary};
   border-radius: 2px;
@@ -54,17 +54,15 @@ const Excerpt = styled.p`
   line-height: 1.6;
 `
 
-const Card = ({ linkSlug, image, title, date, body, ...props }) => {
-  return (
-    <Style featured={props.featured}>
-      <Link to={`/${linkSlug}/`}>
-        <Img fluid={image.fluid} backgroundColor={'#eeeeee'} />
-        <Title>{title}</Title>
-        <Date>{date}</Date>
-        <Excerpt>{body}</Excerpt>
-      </Link>
-    </Style>
-  )
-}
+const Card = ({ linkSlug, image, title, date, body, ...props }) => (
+  <CardStyle featured={props.featured}>
+    <Link to={`/${linkSlug}/`}>
+      <Img fluid={image.fluid} backgroundColor={'#eeeeee'} />
+      <Title>{title}</Title>
+      <Date>{date}</Date>
+      <Excerpt>{body}</Excerpt>
+    </Link>
+  </CardStyle>
+)
 
 export default Card

@@ -1,10 +1,18 @@
 import React, { Component } from 'react'
 import Helmet from 'react-helmet'
-import config from '../utils/siteConfig'
+import siteConfig from '../utils/siteConfig'
 
-class SEO extends Component {
+const SEO = () => null
+class _SEO extends Component {
   render() {
-    const { postNode, pagePath, postSEO, pageSEO, customTitle } = this.props
+    const {
+      data,
+      pagePath,
+      postSEO,
+      pageSEO,
+      pieceSEO,
+      customTitle,
+    } = this.props
     let title
     let description
     let image
@@ -13,33 +21,35 @@ class SEO extends Component {
     let pageUrl
 
     // Set Default OpenGraph Parameters for Fallback
-    title = config.siteTitle
-    description = config.siteDescription
-    image = config.siteUrl + config.shareImage
-    imgWidth = config.shareImageWidth
-    imgHeight = config.shareImageHeight
-    pageUrl = config.siteUrl
+    title = siteConfig.siteTitle
+    description = siteConfig.siteDescription
+    image = siteConfig.siteUrl + siteConfig.shareImage
+    imgWidth = siteConfig.shareImageWidth
+    imgHeight = siteConfig.shareImageHeight
+    pageUrl = siteConfig.siteUrl
 
     if (customTitle) {
-      title = postNode.title
-      pageUrl = config.siteUrl + '/' + pagePath + '/'
+      title = data.title
+      pageUrl = siteConfig.siteUrl + '/' + pagePath + '/'
     }
 
     // Replace with Page Parameters if post or page
-    if (postSEO || pageSEO) {
-      title = postNode.title
+    if (postSEO || pageSEO || pieceSEO) {
+      title = data.title
       description =
-        postNode.metaDescription === null
-          ? postNode.body.childMarkdownRemark.excerpt
-          : postNode.metaDescription.internal.content
+        data.metaDescription === null
+          ? data.body.childMarkdownRemark.excerpt
+          : data.metaDescription.internal
+          ? data.metaDescription.internal.content
+          : data.metaDescription
 
-      pageUrl = config.siteUrl + '/' + pagePath + '/'
+      pageUrl = siteConfig.siteUrl + '/' + pagePath + '/'
     }
     // Use Hero Image for OpenGraph
     if (postSEO) {
-      image = 'https:' + postNode.heroImage.ogimg.src
-      imgWidth = postNode.heroImage.ogimg.width
-      imgHeight = postNode.heroImage.ogimg.height
+      image = 'https:' + data.heroImage.ogimg.src
+      imgWidth = data.heroImage.ogimg.width
+      imgHeight = data.heroImage.ogimg.height
     }
 
     // Default Website Schema
@@ -47,9 +57,9 @@ class SEO extends Component {
       {
         '@context': 'http://schema.org',
         '@type': 'WebSite',
-        url: config.siteUrl,
-        name: config.siteTitle,
-        alternateName: config.siteTitleAlt ? config.siteTitleAlt : '',
+        url: siteConfig.siteUrl,
+        name: siteConfig.siteTitle,
+        alternateName: siteConfig.siteTitleAlt ? siteConfig.siteTitleAlt : '',
       },
     ]
 
@@ -64,8 +74,8 @@ class SEO extends Component {
               '@type': 'ListItem',
               position: 1,
               item: {
-                '@id': config.siteUrl,
-                name: config.siteTitle,
+                '@id': siteConfig.siteUrl,
+                name: siteConfig.siteTitle,
               },
             },
             {
@@ -83,7 +93,7 @@ class SEO extends Component {
           '@type': 'BlogPosting',
           url: pageUrl,
           name: title,
-          alternateName: config.siteTitleAlt ? config.siteTitleAlt : '',
+          alternateName: siteConfig.siteTitleAlt ? siteConfig.siteTitleAlt : '',
           headline: title,
           image: {
             '@type': 'ImageObject',
@@ -93,15 +103,15 @@ class SEO extends Component {
           },
           author: {
             '@type': 'Person',
-            name: config.author,
-            url: config.authorUrl,
+            name: siteConfig.author,
+            url: siteConfig.authorUrl,
           },
           publisher: {
             '@type': 'Organization',
-            name: config.publisher,
-            url: config.siteUrl,
+            name: siteConfig.publisher,
+            url: siteConfig.siteUrl,
           },
-          datePublished: postNode.publishDateISO,
+          datePublished: data.publishDateISO,
           mainEntityOfPage: pageUrl,
         }
       )
@@ -142,7 +152,7 @@ class SEO extends Component {
         <meta name="twitter:card" content="summary_large_image" />
         <meta
           name="twitter:creator"
-          content={config.userTwitter ? config.userTwitter : ''}
+          content={siteConfig.userTwitter ? siteConfig.userTwitter : ''}
         />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:image" content={image} />
