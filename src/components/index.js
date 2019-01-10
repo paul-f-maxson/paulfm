@@ -3,7 +3,7 @@ import Welcome from './Welcome'
 import CardList from './CardList'
 import Card from './Card'
 import Pagination from './Pagination'
-import Button from './Button'
+import ButtonBar from './ButtonBar'
 import Hero from './Hero'
 import SEO from './SEO'
 import Container from './Container'
@@ -20,7 +20,7 @@ export {
   CardList,
   Card,
   Pagination,
-  Button,
+  ButtonBar,
   Hero,
   SEO,
   Container,

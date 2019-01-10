@@ -37,7 +37,8 @@ const PieceTemplate = ({ data, pageContext }) => {
     publishDateISO: publicationDateISO,
   }
 
-  return <Layout>
+  return (
+    <Layout>
       <Helmet>
         <title>{`${title} - ${config.siteTitle}`}</title>
       </Helmet>
@@ -51,8 +52,13 @@ const PieceTemplate = ({ data, pageContext }) => {
 
         <PageBody body={discussion} />
       </Container>
-      <CollectionLinks previous={previous} next={next} collectionItemName={'Piece'} />
+      <CollectionLinks
+        previous={previous}
+        next={next}
+        collectionItemName={'Piece'}
+      />
     </Layout>
+  )
 }
 
 export const query = graphql`

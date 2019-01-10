@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'gatsby'
-import { Button } from './'
+import { ButtonBar } from './'
 
 const Wrapper = styled.div`
   margin: -2em 0 0 0;
@@ -21,7 +21,7 @@ const NextLink = styled(Link)`
 const CollectionLinks = ({ previous, next, collectionItemName }) => {
   return (
     <Wrapper>
-      <Button>
+      <ButtonBar>
         {previous && (
           <PreviousLink to={`/${previous.slug}/`}>
             &#8592; Prev {collectionItemName}
@@ -32,7 +32,7 @@ const CollectionLinks = ({ previous, next, collectionItemName }) => {
             Next {collectionItemName} &#8594;
           </NextLink>
         )}
-      </Button>
+      </ButtonBar>
     </Wrapper>
   )
 }
