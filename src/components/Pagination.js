@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'gatsby'
-import Button from './Button'
+import ButtonBar from './ButtonBar'
 
-const Wrapper = styled(Button)`
+const Wrapper = styled(ButtonBar)`
   position: relative;
 `
 

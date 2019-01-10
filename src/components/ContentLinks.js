@@ -1,35 +1,33 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Button } from './'
-import {LinkExternal} from 'styled-icons/boxicons-regular/LinkExternal'
+import { ButtonBar } from './'
+import { LinkExternal } from 'styled-icons/boxicons-regular/LinkExternal'
 
-const Wrapper = styled.nav`
-  display: flex;
-  margin: 2em 0 -4em 0;
+const Wrapper = styled.div`
+  margin: 2em 0 -3em 0;
   padding: 0 1.5em 2em;
 `
 
-const PieceButton = styled(Button)`
+const PieceAnchor = styled.a`
   margin-right: auto;
   order: 1;
 `
 
-const AppButton = styled(Button)`
+const AppAnchor = styled.a`
   margin-left: auto;
   order: 2;
 `
+
 const ContentLinks = ({ pieceLink, repoLink }) => (
   <Wrapper>
-    <PieceButton>
-      <a href={`${pieceLink}`}>
+    <ButtonBar>
+      <PieceAnchor href={`${pieceLink}`} target="_blank">
         App <LinkExternal title="app-link" size="25" />
-      </a>
-    </PieceButton>
-    <AppButton>
-      <a href={`${repoLink}`}>
+      </PieceAnchor>
+      <AppAnchor href={`${repoLink}`} target="_blank">
         Repo <LinkExternal title="repo-link" size="25" />
-      </a>
-    </AppButton>
+      </AppAnchor>
+    </ButtonBar>
   </Wrapper>
 )
 

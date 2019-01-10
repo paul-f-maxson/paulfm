@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Button = styled.div`
+const ButtonBar = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
@@ -19,4 +19,4 @@ const Button = styled.div`
   }
 `;
 
-export default Button;
+export default ButtonBar;
