@@ -3,6 +3,8 @@ import { graphql } from 'gatsby'
 import Helmet from 'react-helmet'
 import {
   Layout,
+  PageTitle,
+  SectionTitle,
   Welcome,
   CardList,
   Card,
@@ -37,19 +39,21 @@ const Index = ({ data, pageContext }) => {
       <SEO />
       {isFirstPage ? (
         <>
+          <PageTitle>Welcome</PageTitle>
           <Container>
             <Welcome />
           </Container>
-          <Container>{cards}</Container>
+          <Container>
+            <SectionTitle>Portfolio Index</SectionTitle>
+            {cards}
+          </Container>
         </>
       ) : (
         <>
           <Helmet>
             <title>{`${config.siteTitle} - Page ${currentPage}`}</title>
           </Helmet>
-          <Container>
-            <Container>{cards}</Container>
-          </Container>
+          <Container>{cards}</Container>
         </>
       )}
       <Pagination context={pageContext} />
