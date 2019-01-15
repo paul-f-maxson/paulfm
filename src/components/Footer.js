@@ -58,6 +58,7 @@ const Footer = () => (
         </a>
       </Item>
       <Item>
+        Built on{' '}
         <a
           href="https://github.com/ryanwiemer/gatsby-starter-gcn"
           target="_blank"
