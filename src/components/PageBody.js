@@ -97,10 +97,11 @@ const Body = styled.div`
   }
 `
 
-const PageBody = props => {
+// Make sure html has been sanitized!
+const PageBody = ({html}) => {
   return (
     <Body
-      dangerouslySetInnerHTML={{ __html: props.body.childMarkdownRemark.html }}
+      dangerouslySetInnerHTML={{ __html: html }}
     />
   )
 }

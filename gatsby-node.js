@@ -111,31 +111,16 @@ exports.createPages = ({ graphql, actions }) => {
     })
   })
 
-  const loadPages = new Promise(resolve => {
-    graphql(`
-      {
-        allContentfulPage {
-          edges {
-            node {
-              slug
-            }
-          }
-        }
-      }
-    `).then(result => {
-      const pages = result.data.allContentfulPage.edges
-      pages.map(({ node }) => {
-        createPage({
-          path: `${node.slug}/`,
-          component: path.resolve(`./src/templates/page.js`),
-          context: {
-            slug: node.slug,
-          },
-        })
-      })
-      resolve()
+  const loadAbout = new Promise(resolve => {
+    createPage({
+      path: `about/`,
+      component: path.resolve(`./src/templates/about.js`),
+      context: {
+        authorContentfulProfileId: config.authorContentfulProfileId,
+      },
     })
+    resolve()
   })
 
-  return Promise.all([loadPosts, loadTags, loadPages])
+  return Promise.all([loadPosts, loadTags, loadAbout])
 }
