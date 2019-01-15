@@ -23,7 +23,11 @@ const AboutTemplate = ({ data }) => {
 
       <Container>
         <PageTitle>About</PageTitle>
-        <Img fluid={profilePicture.fluid} backgroundColor={'#eeeeee'} />
+        <Img
+          fluid={profilePicture.fluid}
+          backgroundColor={'#eeeeee'}
+          style={{ maxWidth: 300, margin: '0 auto' }}
+        />
         <p>
           <em>Photo Credit &mdash; {profilePictureAttribution}</em>
         </p>
@@ -39,7 +43,7 @@ export const query = graphql`
     contentfulProfile(id: { eq: $authorContentfulProfileId }) {
       # fullName
       profilePicture {
-        fluid(maxWidth: 800) {
+        fluid(maxWidth: 300) {
           ...GatsbyContentfulFluid_withWebp_noBase64
         }
       }
