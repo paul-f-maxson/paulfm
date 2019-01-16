@@ -39,8 +39,8 @@ const Index = ({ data, pageContext }) => {
       <SEO />
       {isFirstPage ? (
         <>
-          <PageTitle>Welcome</PageTitle>
           <Container>
+            <PageTitle>Welcome</PageTitle>
             <Welcome />
           </Container>
           <Container>
