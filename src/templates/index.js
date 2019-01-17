@@ -8,6 +8,7 @@ import {
   Layout,
   PageTitle,
   SectionTitle,
+  ButtonBar,
   CardList,
   Card,
   Container,
@@ -33,30 +34,32 @@ const Index = ({ data, pageContext }) => {
   const externalLinks = (
     <>
       <SectionTitle>Other Profiles</SectionTitle>
-      {iconLinks.map(({ name, iconName, linkUrl }) => {
-        // HACK: Convert fa icon class names (like "free-code-camp") to react-icon library keys (like "FaFreeCodeCamp"). This may break if react-icons changes their name conversion pattern, and this whole section will probably need to be rewritten if a different icon library is implemented
-        const camelIconName =
-          'Fa' +
-          iconName
-            .replace(/-([a-z])/g, match => match[1].toUpperCase())
-            .replace(/^[a-z]/, match => match[0].toUpperCase())
+      <ButtonBar width={"40%"}>
+        {iconLinks.map(({ name, iconName, linkUrl }) => {
+          // HACK: Convert fa icon class names (like "free-code-camp") to react-icon library keys (like "FaFreeCodeCamp"). This may break if react-icons changes their name conversion pattern, and this whole section will probably need to be rewritten if a different icon library is implemented
+          const camelIconName =
+            'Fa' +
+            iconName
+              .replace(/-([a-z])/g, match => match[1].toUpperCase())
+              .replace(/^[a-z]/, match => match[0].toUpperCase())
 
-        const Icon = faIcons[camelIconName]
+          const Icon = faIcons[camelIconName]
 
-        return (
-          <Fragment key={name}>
-            <a href={linkUrl}>
-              <IconContext.Provider value={{size: "4em", color: "black"}}>
-              <div>
-                {/* NOTE: This will crash the build with ~"cannot render undefined" if the name conversion above fails */}
-                {/* TODO: Implement an error boundary */}
-                <Icon title={name} />
-              </div>
-              </IconContext.Provider>
-            </a>
-          </Fragment>
-        )
-      })}
+          return (
+            <Fragment key={name}>
+              <a href={linkUrl}>
+                <IconContext.Provider value={{ size: '3em', color: 'white' }}>
+                  <div>
+                    {/* NOTE: This will crash the build with ~"cannot render undefined" if the name conversion above fails */}
+                    {/* TODO: Implement an error boundary */}
+                    <Icon title={name} />
+                  </div>
+                </IconContext.Provider>
+              </a>
+            </Fragment>
+          )
+        })}
+      </ButtonBar>
     </>
   )
 
