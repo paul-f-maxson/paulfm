@@ -1,6 +1,5 @@
 import Layout from './Layout'
 import SectionTitle from  './SectionTitle'
-import Welcome from './Welcome'
 import CardList from './CardList'
 import Card from './Card'
 import Pagination from './Pagination'
@@ -18,7 +17,6 @@ import ContentLinks from './ContentLinks'
 export {
   Layout,
   SectionTitle,
-  Welcome,
   CardList,
   Card,
   Pagination,
