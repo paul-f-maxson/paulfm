@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import Helmet from 'react-helmet'
 import config from '../utils/siteConfig'
-import { Layout, Container, PageTitle, PageBody, SEO } from '../components'
+import { Layout, Container, PageTitle, SectionTitle, PageBody, SEO } from '../components'
 
 // TODO: Implement SEO
 
@@ -14,8 +14,7 @@ const AboutTemplate = ({ data }) => {
     bio,
   } = data.contentfulProfile
 
-  return (
-    <Layout>
+  return <Layout>
       <Helmet>
         <title>{`About - ${config.siteTitle}`}</title>
       </Helmet>
@@ -23,19 +22,19 @@ const AboutTemplate = ({ data }) => {
 
       <Container>
         <PageTitle>About</PageTitle>
-        <Img
-          fluid={profilePicture.fluid}
-          backgroundColor={'#eeeeee'}
-          style={{ maxWidth: 300, margin: '0 auto' }}
-        />
-        <p>
-          <em>Photo Credit &mdash; {profilePictureAttribution}</em>
-        </p>
-        <h2>Bio</h2>
-        <PageBody body={bio.childMarkdownRemark.html} />
+        {/* OPTIMIZE: Abstract to styled component */}
+        <div style={{ maxWidth: 300, margin: '0 auto' }}>
+          <Img fluid={profilePicture.fluid} backgroundColor={'#eeeeee'} alt="Photo Credit" />
+          <p>
+            <em>Photo Credit &mdash; {profilePictureAttribution}</em>
+          </p>
+        </div>
+      </Container>
+      <Container>
+       <SectionTitle>Bio</SectionTitle>
+        <div dangerouslySetInnerHTML={ {__html: bio.childMarkdownRemark.html}} />
       </Container>
     </Layout>
-  )
 }
 
 export const query = graphql`
