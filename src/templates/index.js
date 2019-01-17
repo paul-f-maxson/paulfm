@@ -32,35 +32,33 @@ const Index = ({ data, pageContext }) => {
   const isFirstPage = currentPage === 1
 
   const externalLinks = (
-    <>
-      <SectionTitle>Other Profiles</SectionTitle>
-      <ButtonBar width={"40%"}>
-        {iconLinks.map(({ name, iconName, linkUrl }) => {
-          // HACK: Convert fa icon class names (like "free-code-camp") to react-icon library keys (like "FaFreeCodeCamp"). This may break if react-icons changes their name conversion pattern, and this whole section will probably need to be rewritten if a different icon library is implemented
-          const camelIconName =
-            'Fa' +
-            iconName
-              .replace(/-([a-z])/g, match => match[1].toUpperCase())
-              .replace(/^[a-z]/, match => match[0].toUpperCase())
+    // TODO: Group buttons closer together
+    <ButtonBar>
+      {iconLinks.map(({ name, iconName, linkUrl }) => {
+        // HACK: Convert fa icon class names (like "free-code-camp") to react-icon library keys (like "FaFreeCodeCamp"). This may break if react-icons changes their name conversion pattern, and this whole section will probably need to be rewritten if a different icon library is implemented
+        const camelIconName =
+          'Fa' +
+          iconName
+            .replace(/-([a-z])/g, match => match[1].toUpperCase())
+            .replace(/^[a-z]/, match => match[0].toUpperCase())
 
-          const Icon = faIcons[camelIconName]
+        const Icon = faIcons[camelIconName]
 
-          return (
-            <Fragment key={name}>
-              <a href={linkUrl}>
-                <IconContext.Provider value={{ size: '3em', color: 'white' }}>
-                  <div>
-                    {/* NOTE: This will crash the build with ~"cannot render undefined" if the name conversion above fails */}
-                    {/* TODO: Implement an error boundary */}
-                    <Icon title={name} />
-                  </div>
-                </IconContext.Provider>
-              </a>
-            </Fragment>
-          )
-        })}
-      </ButtonBar>
-    </>
+        return (
+          <Fragment key={name}>
+            <a href={linkUrl}>
+              <IconContext.Provider value={{ size: '3em', color: 'white' }}>
+                <div>
+                  {/* NOTE: This will crash the build with ~"cannot render undefined" if the name conversion above fails */}
+                  {/* TODO: Implement an error boundary */}
+                  <Icon title={name} />
+                </div>
+              </IconContext.Provider>
+            </a>
+          </Fragment>
+        )
+      })}
+    </ButtonBar>
   )
 
   const cards = (
@@ -78,37 +76,31 @@ const Index = ({ data, pageContext }) => {
     </CardList>
   )
 
-  return (
-    <Layout>
+  return <Layout>
       <SEO />
-      {isFirstPage ? (
-        <>
+      {isFirstPage ? <>
           <Container>
             <PageTitle>Welcome</PageTitle>
-            <WelcomeBody
-              dangerouslySetInnerHTML={{
-                __html: shortBio.childMarkdownRemark.html,
-              }}
-            />
+            <WelcomeBody dangerouslySetInnerHTML={{ __html: shortBio.childMarkdownRemark.html }} />
             <WelcomeBody>This website hosts his portfolio.</WelcomeBody>
-            {externalLinks}
           </Container>
+
           <Container>
             <SectionTitle>Portfolio Index</SectionTitle>
             {cards}
           </Container>
-        </>
-      ) : (
-        <>
+          <Container>
+            <SectionTitle>Other Profiles</SectionTitle>
+            {externalLinks}
+          </Container>
+        </> : <>
           <Helmet>
             <title>{`${config.siteTitle} - Page ${currentPage}`}</title>
           </Helmet>
           <Container>{cards}</Container>
-        </>
-      )}
+        </>}
       <Pagination context={pageContext} />
     </Layout>
-  )
 }
 
 export const query = graphql`
