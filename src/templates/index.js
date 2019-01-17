@@ -1,11 +1,11 @@
 import React from 'react'
 import { graphql } from 'gatsby'
+import styled from 'styled-components'
 import Helmet from 'react-helmet'
 import {
   Layout,
   PageTitle,
   SectionTitle,
-  Welcome,
   CardList,
   Card,
   Container,
@@ -14,8 +14,14 @@ import {
 } from '../components'
 import config from '../utils/siteConfig'
 
+const WelcomeBody = styled.p`
+  margin-top: 0.5em;
+  line-height: 1.5em;
+`
+
 const Index = ({ data, pageContext }) => {
   const pieces = data.allContentfulPortfolioPiece.edges
+  const {fullName, shortBio, iconLinks} = data.authorInfo
   const { currentPage } = pageContext
   const isFirstPage = currentPage === 1
 
@@ -34,40 +40,42 @@ const Index = ({ data, pageContext }) => {
     </CardList>
   )
 
-  return (
-    <Layout>
+  return <Layout>
       <SEO />
-      {isFirstPage ? (
-        <>
+      {isFirstPage ? <>
           <Container>
             <PageTitle>Welcome</PageTitle>
-            <Welcome />
+            <WelcomeBody>{shortBio}</WelcomeBody>
+            <WelcomeBody>This website hosts his portfolio.</WelcomeBody>
           </Container>
           <Container>
             <SectionTitle>Portfolio Index</SectionTitle>
             {cards}
           </Container>
-        </>
-      ) : (
-        <>
+        </> : <>
           <Helmet>
             <title>{`${config.siteTitle} - Page ${currentPage}`}</title>
           </Helmet>
           <Container>{cards}</Container>
-        </>
-      )}
+        </>}
       <Pagination context={pageContext} />
     </Layout>
-  )
 }
 
 export const query = graphql`
-  query($skip: Int!, $limit: Int!) {
-    allContentfulPortfolioPiece(
-      sort: { fields: [publicationDate], order: DESC }
-      limit: $limit
-      skip: $skip
-    ) {
+  query($authorContentfulProfileId: String!, $skip: Int!, $limit: Int!) {
+    authorInfo: contentfulProfile(id: { eq: $authorContentfulProfileId }) {
+      fullName
+      shortBio
+      # TODO: metaDescription
+      iconLinks {
+        name
+        iconName
+        linkUrl
+      }
+    }
+
+    allContentfulPortfolioPiece(sort: { fields: [publicationDate], order: DESC }, limit: $limit, skip: $skip) {
       edges {
         node {
           title
