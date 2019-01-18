@@ -5,7 +5,8 @@ import styled from 'styled-components'
 const Header = styled.header`
   background: ${props => props.theme.colors.base};
   width: 100%;
-  padding: 1.5em 0;
+  padding: 1.5rem 0;
+  margin-bottom: 1.5rem 
 `
 const Nav = styled.nav`
   width: 100%;
