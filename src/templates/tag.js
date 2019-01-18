@@ -42,31 +42,16 @@ const TagTemplate = ({ data, pageContext }) => {
       })}
     </CardList>
   )
-  return (
-    <Layout>
-      {isFirstPage ? (
-        <Helmet>
+  return <Layout>
+      {isFirstPage ? <Helmet>
           <title>{`Tag: ${title} - ${config.siteTitle}`}</title>
-          <meta
-            property="og:title"
-            content={`Tag: ${title} - ${config.siteTitle}`}
-          />
+          <meta property="og:title" content={`Tag: ${title} - ${config.siteTitle}`} />
           <meta property="og:url" content={`${config.siteUrl}/tag/${slug}/`} />
-        </Helmet>
-      ) : (
-        <Helmet>
-          <title>{`Tag: ${title} - Page ${currentPage} - ${
-            config.siteTitle
-          }`}</title>
-          <meta
-            property="og:title"
-            content={`Tag: ${title} - Page ${currentPage} - ${
-              config.siteTitle
-            }`}
-          />
+        </Helmet> : <Helmet>
+          <title>{`Tag: ${title} - Page ${currentPage} - ${config.siteTitle}`}</title>
+          <meta property="og:title" content={`Tag: ${title} - Page ${currentPage} - ${config.siteTitle}`} />
           <meta property="og:url" content={`${config.siteUrl}/tag/${slug}/`} />
-        </Helmet>
-      )}
+        </Helmet>}
 
       <Container>
         <PageTitle small>
@@ -76,9 +61,10 @@ const TagTemplate = ({ data, pageContext }) => {
         </PageTitle>
         {cards}
       </Container>
-      <Pagination context={pageContext} />
+      <Container>
+        <Pagination context={pageContext} />
+      </Container>
     </Layout>
-  )
 }
 
 export const query = graphql`

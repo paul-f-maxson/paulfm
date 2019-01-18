@@ -37,28 +37,26 @@ const PieceTemplate = ({ data, pageContext }) => {
     publishDateISO: publicationDateISO,
   }
 
-  return (
-    <Layout>
+  return <Layout>
       <Helmet>
         <title>{`${title} - ${config.siteTitle}`}</title>
       </Helmet>
       <SEO pagePath={slug} data={seoData} pieceSEO customTitle />
 
       <Hero title={title} image={mainImage} height={'50vh'} />
-      <ContentLinks pieceLink={pieceLink} repoLink={repoLink} />
+      <Container>
+        <ContentLinks pieceLink={pieceLink} repoLink={repoLink} />
+      </Container>
       <Container>
         {tags && <TagList tags={tags} />}
         <PublishDate date={publicationDate} />
 
         <PageBody html={discussion.childMarkdownRemark.html} />
       </Container>
-      <CollectionLinks
-        previous={previous}
-        next={next}
-        collectionItemName={'Piece'}
-      />
+      <Container>
+        <CollectionLinks previous={previous} next={next} collectionItemName={'Piece'} />
+      </Container>
     </Layout>
-  )
 }
 
 export const query = graphql`
