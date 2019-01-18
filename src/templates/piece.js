@@ -50,7 +50,7 @@ const PieceTemplate = ({ data, pageContext }) => {
         {tags && <TagList tags={tags} />}
         <PublishDate date={publicationDate} />
 
-        <PageBody body={discussion} />
+        <PageBody html={discussion.childMarkdownRemark.html} />
       </Container>
       <CollectionLinks
         previous={previous}

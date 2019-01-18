@@ -133,17 +133,17 @@ module.exports = {
               }))
             },
             query: `{
-            allContentfulPortfolioPiece(limit: 1000, sort: {fields: [publicationDate], order: DESC}) {
-               edges {
-                 node {
-                   title
-                   slug
-                   publicationDate(formatString: "MMMM DD, YYYY")
-                   shortDescription
-                   }
-                 }
-               }
-             }`,
+              allContentfulPortfolioPiece(limit: 1000, sort: {fields: [publicationDate], order: DESC}) {
+                edges {
+                  node {
+                    title
+                    slug
+                    publicationDate(formatString: "MMMM DD, YYYY")
+                    shortDescription 
+                  }
+                }
+              }
+            }`,
             output: '/rss.xml',
           },
         ],
