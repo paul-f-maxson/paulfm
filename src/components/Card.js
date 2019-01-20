@@ -5,7 +5,7 @@ import Img from 'gatsby-image'
 
 const CardStyle = styled.li`
   position: relative;
-  border: 1px solid ${props => props.theme.colors.secondary};
+  border: 1px solid ${props => props.theme.colors.tertiary};
   border-radius: 2px;
   margin: 0 0 1em 0;
   width: 100%;
@@ -23,9 +23,9 @@ const CardStyle = styled.li`
   a {
     display: flex;
     flex-flow: column;
+    color: black;
     height: 100%;
     width: 100%;
-    color: ${props => props.theme.colors.base};
     text-decoration: none;
     .gatsby-image-wrapper {
       height: 0;
@@ -40,6 +40,8 @@ const CardStyle = styled.li`
 const Title = styled.h2`
   font-size: 1.5em;
   font-weight: 600;
+  color: ${({theme}) => theme.colors.base};
+  ${'' /* color: #0f8980; */}
   text-transform: capitalize;
   margin: 1rem 1rem 0.5rem 1rem;
 `

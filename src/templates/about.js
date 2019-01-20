@@ -7,7 +7,6 @@ import {
   Layout,
   Container,
   PageTitle,
-  SectionTitle,
   PageBody,
   // SEO,
 } from '../components'

@@ -3,6 +3,7 @@ import styled from 'styled-components'
 const SectionTitle = styled.h2`
   font-size: 2rem;
   text-transform: capitalize;
+  color: ${props => props.theme.colors.secondary};
   font-weight: 600;
   text-align: left;
   margin: 0 0 1.2rem 0;

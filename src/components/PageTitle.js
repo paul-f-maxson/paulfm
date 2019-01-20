@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 const Title = styled.h1`
   font-size: ${props => (props.small ? '2em' : '3em')};
+  color: ${props => props.theme.colors.secondary};
   text-transform: capitalize;
   font-weight: 600;
   text-align: center;
@@ -14,7 +15,7 @@ const Title = styled.h1`
   }
   a {
     transition: all 0.2s;
-    color: ${props => props.theme.colors.base};
+    
     &:hover {
       color: ${props => props.theme.colors.highlight};
     }
