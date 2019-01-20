@@ -44,7 +44,6 @@ const AboutTemplate = ({ data }) => {
         </div>
       </Container>
       <Container>
-        <SectionTitle>Bio</SectionTitle>
         <PageBody html={bio.childMarkdownRemark.html} />
       </Container>
     </Layout>
