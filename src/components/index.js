@@ -1,5 +1,7 @@
 import Layout from './Layout'
+import Flex from './Flex'
 import SectionTitle from  './SectionTitle'
+import Button from './Button'
 import CardList from './CardList'
 import Card from './Card'
 import Pagination from './Pagination'
@@ -16,7 +18,9 @@ import ContentLinks from './ContentLinks'
 
 export {
   Layout,
+  Flex,
   SectionTitle,
+  Button,
   CardList,
   Card,
   Pagination,

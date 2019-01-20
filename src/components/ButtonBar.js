@@ -17,6 +17,6 @@ const ButtonBar = styled.div`
       background: ${props => props.theme.colors.highlight};
     }
   }
-`;
+`
 
 export default ButtonBar;
