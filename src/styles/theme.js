@@ -9,6 +9,11 @@ const theme = {
     maxWidth: '1050px',
     maxWidthCentered: '650px',
   },
+  fonts: {
+    primary: "400 3rem K2D",
+    secondary: "100 2.5rem K2D",
+    body: "1rem roboto"
+  },
   responsive: {
     small: '35em',
     medium: '50em',

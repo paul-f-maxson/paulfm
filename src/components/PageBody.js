@@ -26,6 +26,7 @@ const Body = styled.div`
   }
 
   p {
+    font: ${({theme}) => theme.fonts.body};
     line-height: 1.6;
     margin: 0 0 2em 0;
   }
