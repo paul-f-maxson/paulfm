@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import {Link} from "gatsby"
 
 const Wrapper = styled.footer`
   display: flex;
@@ -29,6 +30,7 @@ const Item = styled.li`
     width: auto;
   }
   a {
+    font-size: 0.8rem;
     font-weight: 600;
     transition: all 0.2s;
     color: ${props => props.theme.colors.base};
@@ -57,24 +59,9 @@ const Footer = () => (
           />
         </a>
       </Item>
-      <Item>
-        Built on{' '}
-        <a
-          href="https://github.com/ryanwiemer/gatsby-starter-gcn"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          gatsby-starter-gcn
-        </a>{' '}
-        by{' '}
-        <a
-          href="https://github.com/ryanwiemer"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          @ryanwiemer
-        </a>
-      </Item>
+     <Item>
+       <Link to="/attribution">attribution</Link>
+     </Item>
     </List>
   </Wrapper>
 )

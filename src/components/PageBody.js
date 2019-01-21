@@ -27,7 +27,6 @@ const Body = styled.div`
   }
 
   p {
-    
     line-height: 1.6;
     margin: 0 0 2em 0;
   }
@@ -97,14 +96,23 @@ const Body = styled.div`
       background: inherit !important;
     }
   }
+
+  table {
+    width: 80%;
+    border-collapse: separate;
+    border-spacing: 0.5rem;
+    .header {
+      border-bottom: 1px solid #ccc !important;
+    }
+  }
 `
 
 // Make sure html has been sanitized!
-const PageBody = ({html}) => {
-  return (
-    <Body
-      dangerouslySetInnerHTML={{ __html: html }}
-    />
+const PageBody = ({ html, children }) => {
+  return html ? (
+    <Body dangerouslySetInnerHTML={{ __html: html }} />
+  ) : (
+    <Body>{children}</Body>
   )
 }
 

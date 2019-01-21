@@ -21,10 +21,14 @@ const AppAnchor = styled.a`
 const ContentLinks = ({ pieceLink, repoLink }) => (
   <Wrapper>
     <ButtonBar>
-      <PieceAnchor href={`${pieceLink}`} target="_blank">
+      <PieceAnchor
+        href={`${pieceLink}`}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         App <LinkExternal title="app-link" size="25" />
       </PieceAnchor>
-      <AppAnchor href={`${repoLink}`} target="_blank">
+      <AppAnchor href={`${repoLink}`} target="_blank" rel="noopener noreferrer">
         Repo <LinkExternal title="repo-link" size="25" />
       </AppAnchor>
     </ButtonBar>
