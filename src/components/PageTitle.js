@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Title = styled.h1`
+  font: ${({theme}) => theme.fonts.primary};
   font-size: ${props => (props.small ? '2em' : '3em')};
   color: ${props => props.theme.colors.secondary};
   text-transform: capitalize;

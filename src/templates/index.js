@@ -19,6 +19,7 @@ import {
 import config from '../utils/siteConfig'
 
 const WelcomeBody = styled.p`
+  font: ${({ theme }) => theme.fonts.body};
   margin-top: 0.5em;
   line-height: 1.5em;
   strong {

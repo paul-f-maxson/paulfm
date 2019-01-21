@@ -5,6 +5,7 @@ require('prismjs/themes/prism.css')
 const Body = styled.div`
   margin: 0 auto;
   max-width: ${props => props.theme.sizes.maxWidthCentered};
+  font: ${({ theme }) => theme.fonts.body};
 
   h1,
   h2,
@@ -26,6 +27,7 @@ const Body = styled.div`
   }
 
   p {
+    
     line-height: 1.6;
     margin: 0 0 2em 0;
   }

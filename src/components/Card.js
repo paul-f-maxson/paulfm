@@ -38,8 +38,7 @@ const CardStyle = styled.li`
 `
 
 const Title = styled.h2`
-  font-size: 1.5em;
-  font-weight: 600;
+  font: ${({theme}) => theme.fonts.secondary};
   color: ${({theme}) => theme.colors.base};
   ${'' /* color: #0f8980; */}
   text-transform: capitalize;
@@ -52,6 +51,7 @@ const Date = styled.h3`
 `
 
 const Excerpt = styled.p`
+  font: ${({ theme }) => theme.fonts.body};
   margin: 0 1rem 1rem 1rem;
   line-height: 1.6;
 `
