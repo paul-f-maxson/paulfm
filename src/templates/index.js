@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
 import { graphql } from 'gatsby'
+import Img from 'gatsby-image'
 import styled from 'styled-components'
 import { IconContext } from 'react-icons'
 import * as faIcons from 'react-icons/fa'
@@ -29,6 +30,7 @@ const WelcomeBody = styled.p`
 
 const Index = ({ data, pageContext }) => {
   const pieces = data.allContentfulPortfolioPiece.edges
+  const { mainHero } = data
   const { shortBio, iconLinks } = data.authorInfo
   const { currentPage } = pageContext
   const isFirstPage = currentPage === 1
@@ -83,6 +85,7 @@ const Index = ({ data, pageContext }) => {
       {isFirstPage ? (
         <>
           <Container>
+            <Img {...mainHero} />
             <PageTitle>Welcome</PageTitle>
             <WelcomeBody
               dangerouslySetInnerHTML={{
@@ -117,8 +120,24 @@ const Index = ({ data, pageContext }) => {
 }
 
 export const query = graphql`
-  query($authorContentfulProfileId: String!, $skip: Int!, $limit: Int!) {
-    authorInfo: contentfulProfile(contentful_id: { eq: $authorContentfulProfileId }) {
+  query(
+    $mainHeroContentfulAssetId: String!
+    $authorContentfulProfileId: String!
+    $skip: Int!
+    $limit: Int!
+  ) {
+    mainHero: contentfulAsset(
+      contentful_id: { eq: $mainHeroContentfulAssetId }
+    ) {
+      title
+      fluid(maxWidth: 1800) {
+        ...GatsbyContentfulFluid_withWebp_noBase64
+      }
+    }
+
+    authorInfo: contentfulProfile(
+      contentful_id: { eq: $authorContentfulProfileId }
+    ) {
       # OPTIMIZE: fullName
       shortBio {
         childMarkdownRemark {

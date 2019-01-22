@@ -32,6 +32,7 @@ exports.createPages = ({ graphql, actions }) => {
         component: path.resolve(`./src/templates/index.js`),
         context: {
           authorContentfulProfileId: config.authorContentfulProfileId,
+          mainHeroContentfulAssetId: config.mainHeroContentfulAssetId,
           limit: piecesPerHomePage,
           skip: 0,
           numPages: numPages + 1,

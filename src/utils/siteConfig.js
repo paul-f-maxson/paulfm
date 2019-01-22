@@ -4,6 +4,7 @@ module.exports = {
   publisher: 'paul-f-maxson', // Organization name used for SEO schema
   siteDescription: `Paul Maxson's portfolio and public profile`,
   siteUrl: 'https://paulfm.netlify.com', // Site domain. Do not include a trailing slash! If you wish to use a path prefix you can read more about that here: https://www.gatsbyjs.org/docs/path-prefix/
+  mainHeroContentfulAssetId: "2DUZFzwqAEW0swcuzbvL0Y", // Contentful ID for the index page hero
   piecesPerHomePage: 10, // Number of pieces shown on the 1st page of of the index.js template (home page)
   piecesPerPage: 20, // Number of pieces shown on paginated pages
   author: 'Paul Maxson', // Author for RSS author segment and SEO schema
