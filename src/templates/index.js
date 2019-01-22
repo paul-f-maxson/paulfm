@@ -118,7 +118,7 @@ const Index = ({ data, pageContext }) => {
 
 export const query = graphql`
   query($authorContentfulProfileId: String!, $skip: Int!, $limit: Int!) {
-    authorInfo: contentfulProfile(id: { eq: $authorContentfulProfileId }) {
+    authorInfo: contentfulProfile(contentful_id: { eq: $authorContentfulProfileId }) {
       # OPTIMIZE: fullName
       shortBio {
         childMarkdownRemark {

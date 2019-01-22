@@ -51,7 +51,7 @@ const AboutTemplate = ({ data }) => {
 
 export const query = graphql`
   query($authorContentfulProfileId: String) {
-    contentfulProfile(id: { eq: $authorContentfulProfileId }) {
+    contentfulProfile(contentful_id: { eq: $authorContentfulProfileId }) {
       # fullName
       profilePicture {
         fluid(maxWidth: 300) {

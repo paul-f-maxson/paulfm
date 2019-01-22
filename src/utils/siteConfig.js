@@ -7,7 +7,7 @@ module.exports = {
   piecesPerHomePage: 10, // Number of pieces shown on the 1st page of of the index.js template (home page)
   piecesPerPage: 20, // Number of pieces shown on paginated pages
   author: 'Paul Maxson', // Author for RSS author segment and SEO schema
-  authorContentfulProfileId: "8fa8a441-0433-5779-b7cc-9735784dd5d2", // used to build the About page
+  authorContentfulProfileId: "3e8zCQctMc0a0koO6MQg4Q", // used to build the About page
   authorUrl: 'https://github.com/paul-f-maxson', // URL used for author and publisher schema, can be a social profile or other personal site
   userTwitter: '@paulmaxson', // Change for Twitter Cards
   shortTitle: 'PaulFM', // Used for App manifest e.g. Mobile Home Screen
