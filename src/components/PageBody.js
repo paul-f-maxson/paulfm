@@ -89,15 +89,6 @@ const Body = styled.div`
     padding: 0 0 0 0.5em;
   }
 
-  pre {
-    margin: 0 0 2em 0;
-    border-radius: 2px;
-    background: ${props => props.theme.colors.secondary} !important;
-    span {
-      background: inherit !important;
-    }
-  }
-
   table {
     width: 80%;
     border-collapse: separate;
