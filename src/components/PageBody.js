@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-require('prismjs/themes/prism.css')
+require('prismjs/themes/prism-tomorrow.css')
 
 const Body = styled.div`
   margin: 0 auto;
