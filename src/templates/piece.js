@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { graphql } from 'gatsby'
 import Helmet from 'react-helmet'
 import config from '../utils/siteConfig'
@@ -45,16 +45,14 @@ const PieceTemplate = ({ data, pageContext }) => {
       imageWidth: mainImage.ogimg.width,
       imageHeight: mainImage.ogimg.height,
       description: shortDescription,
-      tags: tags.map(({title}) => title),
+      tagTitles: tags.map(({ title }) => title),
       wordCount: discussion.childMarkdownRemark.wordCount.words,
       timeToRead: discussion.childMarkdownRemark.timeToRead,
       body: discussion.childMarkdownRemark.rawMarkdownBody,
-      publishDateISO: publicationDateISO,
+      publicationDateISO,
     }),
     additionalMetaTags: [
-      <Fragment key="og-type-article">
-        <meta property="og:type" content="article" />
-      </Fragment>,
+      <meta key="og-type-article" property="og:type" content="article" />,
     ],
   }
 

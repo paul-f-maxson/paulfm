@@ -16,7 +16,7 @@ const SEO = ({
     {/* General tags */}
     <meta
       name="image"
-      content={imageURL || siteConfig.siteUrl + siteConfig.shareImage}
+      content={imageURL || `${siteConfig.siteUrl}/${siteConfig.shareImage}`}
     />
     <meta
       name="description"
