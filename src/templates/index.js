@@ -105,6 +105,8 @@ const Index = ({ data, pageContext }) => {
         wordCount: node.discussion.childMarkdownRemark.wordCount.words,
         timeToRead: node.discussion.childMarkdownRemark.timeToRead,
         body: node.discussion.childMarkdownRemark.rawMarkdownBody,
+        repoLink: node.repoLink,
+        pieceLink: node.pieceLink,
         publicationDateISO: node.publicationDateISO,
       })),
     }),

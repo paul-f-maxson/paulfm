@@ -49,6 +49,8 @@ const PieceTemplate = ({ data, pageContext }) => {
       wordCount: discussion.childMarkdownRemark.wordCount.words,
       timeToRead: discussion.childMarkdownRemark.timeToRead,
       body: discussion.childMarkdownRemark.rawMarkdownBody,
+      repoLink,
+      pieceLink,
       publicationDateISO,
     }),
     additionalMetaTags: [

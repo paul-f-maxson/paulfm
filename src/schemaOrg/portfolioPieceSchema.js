@@ -12,6 +12,8 @@ export default ({
   timeToRead,
   tagTitles,
   body,
+  repoLink,
+  pieceLink,
   publicationDateISO,
 }) => {
   return [
@@ -36,9 +38,7 @@ export default ({
       '@type': 'Article',
       url: `${siteConfig.siteUrl}/${slug}`,
       name: title,
-      alternateName: siteConfig.siteTitleAlt ? siteConfig.siteTitleAlt : '',
       headline: title,
-      description: description,
       mentions: tagTitles,
       keywords: tagTitles,
       wordCount: wordCount,
@@ -61,7 +61,20 @@ export default ({
         url: siteConfig.authorUrl,
       },
       datePublished: publicationDateISO,
-      mainEntityOfPage: `${siteConfig.siteUrl}/${slug}`,
+      mainEntity: {
+        '@type': 'WebApplication',
+        '@id': repoLink,
+        name: title,
+        author: {
+          '@type': 'Person',
+          description,
+          name: siteConfig.author,
+          url: siteConfig.authorUrl,
+        },
+        discussionURL: `${repoLink}/issues`,
+        url: pieceLink,
+        mainEntityOfPage: `${siteConfig.siteUrl}/${slug}`,
+      },
     },
   ]
 }
