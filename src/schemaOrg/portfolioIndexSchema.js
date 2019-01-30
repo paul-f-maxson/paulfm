@@ -1,5 +1,5 @@
 import siteConfig from '../utils/siteConfig'
-import { portfolioPieceSchema } from './'
+import { defaultWebsiteSchema, portfolioPieceSchema } from './'
 
 export default ({ pieces }) => {
   const schemaParts = pieces.map(({ slug }) => ({
@@ -9,6 +9,7 @@ export default ({ pieces }) => {
   const schemaGraph = pieces.map(portfolioPieceSchema)
 
   return [
+    ...defaultWebsiteSchema(),
     {
       '@context': 'http://schema.org',
       '@graph': [

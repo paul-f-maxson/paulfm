@@ -1,4 +1,5 @@
 import siteConfig from '../utils/siteConfig'
+import {defaultWebsiteSchema} from "./"
 
 // Portfolio Entry Schema
 export default ({
@@ -17,6 +18,7 @@ export default ({
   publicationDateISO,
 }) => {
   return [
+    ...defaultWebsiteSchema(),
     {
       '@context': 'http://schema.org',
       '@type': 'BreadcrumbList',

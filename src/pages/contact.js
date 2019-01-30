@@ -1,23 +1,39 @@
 import React from 'react'
 import Helmet from 'react-helmet'
-import config from '../utils/siteConfig'
+import siteConfig from '../utils/siteConfig'
 import Layout from '../components/Layout'
 import Container from '../components/Container'
 import PageTitle from '../components/PageTitle'
 import ContactForm from '../components/ContactForm'
-import SEO from '../components/SEO'
+
+import { contactSchema } from '../schemaOrg'
+
+const SEO = () => (
+  <Helmet>
+    <meta name="description" content={'Contact Paul Maxson via email from this page'} />
+
+    {/* Schema.org tags */}
+    <script type="application/ld+json">
+      {JSON.stringify(contactSchema())}
+    </script>
+
+    {/* OpenGraph tags */}
+    <meta property="og:title" content={"Contact"} />
+
+    <meta property="og:url" content={`${siteConfig.siteURL}/contact`} />
+
+    <meta property="og:description" content={'Contact Paul Maxson via email from this page'} />
+  </Helmet>
+)
 
 const Contact = ({ data }) => {
-  const postNode = {
-    title: `Contact - ${config.siteTitle}`,
-  }
-
   return (
     <Layout>
       <Helmet>
-        <title>{`Contact - ${config.siteTitle}`}</title>
+        <title>{`Contact - ${siteConfig.siteTitle}`}</title>
       </Helmet>
-      <SEO postNode={postNode} pagePath="contact" customTitle />
+
+      <SEO />
 
       <Container>
         <PageTitle>Contact</PageTitle>
