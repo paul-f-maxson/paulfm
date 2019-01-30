@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { graphql } from 'gatsby'
 import Helmet from 'react-helmet'
 import config from '../utils/siteConfig'
@@ -13,6 +13,8 @@ import {
   Hero,
   ContentLinks,
 } from '../components'
+
+import { portfolioPieceSchema } from '../schemaOrg'
 
 const PieceTemplate = ({ data, pageContext }) => {
   const {
@@ -29,19 +31,36 @@ const PieceTemplate = ({ data, pageContext }) => {
   } = data.contentfulPortfolioPiece
   const { prev: previous, next } = pageContext
 
-  const seoData = {
+  const seoConfig = {
     title: title,
-    metaDescription: shortDescription,
-    heroImage: mainImage,
-    publishDate: publicationDate,
-    publishDateISO: publicationDateISO,
+    description: shortDescription,
+    pageURL: slug,
+    imageURL: mainImage.ogimg.src,
+    imageWidth: mainImage.ogimg.width,
+    imageHeight: mainImage.ogimg.height,
+    additionalSchemaOrgJSONLD: portfolioPieceSchema({
+      title: title,
+      description: shortDescription,
+      pageURL: slug,
+      imageURL: mainImage.ogimg.src,
+      imageWidth: mainImage.ogimg.width,
+      imageHeight: mainImage.ogimg.height,
+      publishDateISO: publicationDateISO,
+    }),
+    additionalMetaTags: [
+      <Fragment key="og-type-article">
+        <meta property="og:type" content="article" />
+      </Fragment>,
+    ],
   }
 
-  return <Layout>
+  return (
+    <Layout>
       <Helmet>
         <title>{`${title} - ${config.siteTitle}`}</title>
       </Helmet>
-      <SEO pagePath={slug} data={seoData} pieceSEO customTitle />
+
+      <SEO {...seoConfig} />
 
       <Hero title={title} image={mainImage} height={'50vh'} />
       <Container>
@@ -54,9 +73,14 @@ const PieceTemplate = ({ data, pageContext }) => {
         <PageBody html={discussion.childMarkdownRemark.html} />
       </Container>
       <Container>
-        <CollectionLinks previous={previous} next={next} collectionItemName={'Piece'} />
+        <CollectionLinks
+          previous={previous}
+          next={next}
+          collectionItemName={'Piece'}
+        />
       </Container>
     </Layout>
+  )
 }
 
 export const query = graphql`

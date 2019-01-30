@@ -81,7 +81,6 @@ const Index = ({ data, pageContext }) => {
 
   return (
     <Layout>
-      <SEO />
       {isFirstPage ? (
         <>
           <Container>

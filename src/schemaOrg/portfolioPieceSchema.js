@@ -1,4 +1,4 @@
-import siteConfig from '../../../utils/siteConfig'
+import siteConfig from '../utils/siteConfig'
 
 // Portfolio Entry Schema
 export default ({title, pageUrl, imageURL, imgWidth, imgHeight, publishDateISO}) => ([
