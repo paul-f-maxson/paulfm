@@ -89,7 +89,7 @@ const Index = ({ data, pageContext }) => {
   const seoConfig = {
     title: 'Portfolio Index',
     description: "The index of Paul Maxson's web development portfolio",
-    pageURL: siteConfig.siteURL,
+    slug: '',
     imageURL: mainHero.ogimg.src,
     imageWidth: mainHero.ogimg.width,
     imageHeight: mainHero.ogimg.height,
@@ -103,7 +103,7 @@ const Index = ({ data, pageContext }) => {
         description: node.shortDescription,
         tagTitles: node.tags.map(({ title }) => title),
         wordCount: node.discussion.childMarkdownRemark.wordCount.words,
-        timeToRead: node.discussion.childMarkdownRemark.timeToRead,
+        timeToRead: `P${node.discussion.childMarkdownRemark.timeToRead}M`,
         body: node.discussion.childMarkdownRemark.rawMarkdownBody,
         repoLink: node.repoLink,
         pieceLink: node.pieceLink,

@@ -1,11 +1,12 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import siteConfig from '../utils/siteConfig'
+import { defaultWebsiteSchema } from '../schemaOrg'
 
 const SEO = ({
   title,
   description,
-  pageUrl,
+  slug,
   imageURL,
   imageWidth,
   imageHeight,
@@ -26,14 +27,7 @@ const SEO = ({
     {/* Schema.org tags */}
     <script type="application/ld+json">
       {JSON.stringify([
-        // Default Website Schema
-        {
-          '@context': 'http://schema.org',
-          '@type': 'WebSite',
-          url: siteConfig.siteUrl,
-          name: siteConfig.siteTitle,
-          alternateName: siteConfig.siteTitleAlt || '',
-        },
+        ...defaultWebsiteSchema(),
         ...(additionalSchemaOrgJSONLD || []),
       ])}
     </script>
@@ -41,7 +35,10 @@ const SEO = ({
     {/* OpenGraph tags */}
     <meta property="og:title" content={title || siteConfig.siteTitle} />
 
-    <meta property="og:url" content={pageUrl || siteConfig.siteUrl} />
+    <meta
+      property="og:url"
+      content={`${siteConfig.siteUrl}/${slug}` || siteConfig.siteUrl}
+    />
     <meta
       property="og:image"
       content={imageURL || siteConfig.siteUrl + siteConfig.shareImage}

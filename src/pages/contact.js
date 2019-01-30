@@ -6,23 +6,29 @@ import Container from '../components/Container'
 import PageTitle from '../components/PageTitle'
 import ContactForm from '../components/ContactForm'
 
-import { contactSchema } from '../schemaOrg'
+import { defaultWebsiteSchema, contactSchema } from '../schemaOrg'
 
 const SEO = () => (
   <Helmet>
-    <meta name="description" content={'Contact Paul Maxson via email from this page'} />
+    <meta
+      name="description"
+      content={'Contact Paul Maxson via email from this page'}
+    />
 
     {/* Schema.org tags */}
     <script type="application/ld+json">
-      {JSON.stringify(contactSchema())}
+      {JSON.stringify([...defaultWebsiteSchema(), ...contactSchema()])}
     </script>
 
     {/* OpenGraph tags */}
-    <meta property="og:title" content={"Contact"} />
+    <meta property="og:title" content={'Contact'} />
 
     <meta property="og:url" content={`${siteConfig.siteURL}/contact`} />
 
-    <meta property="og:description" content={'Contact Paul Maxson via email from this page'} />
+    <meta
+      property="og:description"
+      content={'Contact Paul Maxson via email from this page'}
+    />
   </Helmet>
 )
 

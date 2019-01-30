@@ -34,7 +34,7 @@ const PieceTemplate = ({ data, pageContext }) => {
   const seoConfig = {
     title: title,
     description: shortDescription,
-    pageURL: slug,
+    slug,
     imageURL: mainImage.ogimg.src,
     imageWidth: mainImage.ogimg.width,
     imageHeight: mainImage.ogimg.height,

@@ -1,4 +1,4 @@
-import defaultWebsiteSchema from "./defaultWebsiteSchema"
+import defaultWebsiteSchema from './defaultWebsiteSchema'
 import portfolioPieceSchema from './portfolioPieceSchema'
 import portfolioIndexSchema from './portfolioIndexSchema'
 import aboutSchema from './aboutSchema'

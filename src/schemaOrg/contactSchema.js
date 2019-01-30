@@ -1,9 +1,6 @@
 import siteConfig from '../utils/siteConfig'
 
-import {defaultWebsiteSchema} from './'
-
 export default () => [
-  ...defaultWebsiteSchema(),
   {
     '@context': 'http://schema.org',
     '@type': 'BreadcrumbList',
@@ -23,6 +20,7 @@ export default () => [
   {
     '@context': 'http://schema.org',
     '@type': 'ContactPage',
-      title: `Contact - ${siteConfig.siteTitle}`,
+    '@id': `${siteConfig.siteUrl}/contact`,
+    title: `Contact - ${siteConfig.siteTitle}`,
   },
 ]
