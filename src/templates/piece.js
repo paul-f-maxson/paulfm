@@ -39,12 +39,16 @@ const PieceTemplate = ({ data, pageContext }) => {
     imageWidth: mainImage.ogimg.width,
     imageHeight: mainImage.ogimg.height,
     additionalSchemaOrgJSONLD: portfolioPieceSchema({
-      title: title,
-      description: shortDescription,
-      pageURL: slug,
+      title,
+      slug,
       imageURL: mainImage.ogimg.src,
       imageWidth: mainImage.ogimg.width,
       imageHeight: mainImage.ogimg.height,
+      description: shortDescription,
+      tags: tags.map(({title}) => title),
+      wordCount: discussion.childMarkdownRemark.wordCount.words,
+      timeToRead: discussion.childMarkdownRemark.timeToRead,
+      body: discussion.childMarkdownRemark.rawMarkdownBody,
       publishDateISO: publicationDateISO,
     }),
     additionalMetaTags: [
@@ -111,6 +115,11 @@ export const query = graphql`
       }
       discussion {
         childMarkdownRemark {
+          timeToRead
+          wordCount {
+            words
+          }
+          rawMarkdownBody
           html
         }
       }

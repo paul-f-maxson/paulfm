@@ -32,7 +32,7 @@ const SEO = ({
           '@type': 'WebSite',
           url: siteConfig.siteUrl,
           name: siteConfig.siteTitle,
-          alternateName: siteConfig.siteTitleAlt ? siteConfig.siteTitleAlt : '',
+          alternateName: siteConfig.siteTitleAlt || '',
         },
         ...(additionalSchemaOrgJSONLD || []),
       ])}

@@ -17,7 +17,10 @@ import {
   Pagination,
   SEO,
 } from '../components'
-import config from '../utils/siteConfig'
+
+import { portfolioIndexSchema } from '../schemaOrg'
+
+import siteConfig from '../utils/siteConfig'
 
 const WelcomeBody = styled.p`
   font: ${({ theme }) => theme.fonts.body};
@@ -45,7 +48,11 @@ const Index = ({ data, pageContext }) => {
           date: piece.publicationDate,
           body: piece.shortDescription,
         }
-        return <Card key={piece.id} {...config} />
+        return (
+          <Fragment key={piece.id}>
+            <Card {...config} />
+          </Fragment>
+        )
       })}
     </CardList>
   )
@@ -79,8 +86,33 @@ const Index = ({ data, pageContext }) => {
     </Flex>
   )
 
+  const seoConfig = {
+    title: 'Portfolio Index',
+    description: "The index of Paul Maxson's web development portfolio",
+    pageURL: siteConfig.siteURL,
+    imageURL: mainHero.ogimg.src,
+    imageWidth: mainHero.ogimg.width,
+    imageHeight: mainHero.ogimg.height,
+    additionalSchemaOrgJSONLD: portfolioIndexSchema({
+      pieces: pieces.map(({ node }) => ({
+        title: node.title,
+        slug: node.slug,
+        imageURL: node.mainImage.ogimg.src,
+        imageWidth: node.mainImage.ogimg.width,
+        imageHeight: node.mainImage.ogimg.height,
+        description: node.shortDescription,
+        tagTitles: node.tags.map(({ title }) => title),
+        wordCount: node.discussion.childMarkdownRemark.wordCount.words,
+        timeToRead: node.discussion.childMarkdownRemark.timeToRead,
+        body: node.discussion.childMarkdownRemark.rawMarkdownBody,
+        publishDateISO: node.publicationDateISO,
+      })),
+    }),
+  }
+
   return (
     <Layout>
+      <SEO {...seoConfig} />
       {isFirstPage ? (
         <>
           <Container>
@@ -106,7 +138,7 @@ const Index = ({ data, pageContext }) => {
       ) : (
         <>
           <Helmet>
-            <title>{`${config.siteTitle} - Page ${currentPage}`}</title>
+            <title>{`${siteConfig.siteTitle} - Page ${currentPage}`}</title>
           </Helmet>
           <Container>{cards}</Container>
         </>
@@ -131,6 +163,11 @@ export const query = graphql`
       title
       fluid(maxWidth: 1800) {
         ...GatsbyContentfulFluid_withWebp_noBase64
+      }
+      ogimg: resize(width: 1800) {
+        src
+        width
+        height
       }
     }
 
@@ -159,18 +196,35 @@ export const query = graphql`
       edges {
         node {
           title
-          id
           slug
           shortDescription
           publicationDate(formatString: "MMMM DD, YYYY")
+          publicationDateISO: publicationDate(formatString: "YYYY-MM-DD")
+          repoLink
+          pieceLink
+          tags {
+            title
+            id
+            slug
+          }
           mainImage {
             title
             fluid(maxWidth: 1800) {
               ...GatsbyContentfulFluid_withWebp_noBase64
             }
+            ogimg: resize(width: 1800) {
+              src
+              width
+              height
+            }
           }
           discussion {
             childMarkdownRemark {
+              timeToRead
+              wordCount {
+                words
+              }
+              rawMarkdownBody
               html
             }
           }
