@@ -97,7 +97,7 @@ const Index = ({ data, pageContext }) => {
       pieces: pieces.map(({ node }) => ({
         title: node.title,
         slug: node.slug,
-        imageURL: node.mainImage.ogimg.src,
+        imageUrl: `https:${node.mainImage.ogimg.src}`,
         imageWidth: node.mainImage.ogimg.width,
         imageHeight: node.mainImage.ogimg.height,
         description: node.shortDescription,

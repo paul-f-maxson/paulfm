@@ -7,5 +7,14 @@ export default () => [
     url: siteConfig.siteUrl,
     name: siteConfig.siteTitle,
     alternateName: siteConfig.siteTitleAlt || '',
+    publisher: {
+      '@type': 'Organization',
+      name: siteConfig.publisher,
+      url: siteConfig.authorUrl,
+      logo: {
+        '@type': 'ImageObject',
+        url: siteConfig.publisherLogo,
+      },
+    },
   },
 ]

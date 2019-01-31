@@ -2,6 +2,7 @@ module.exports = {
   siteTitle: `Paul Maxson's Portfolio`,
   siteTitleAlt: `Paul Maxson`, // This allows an alternative site title for SEO schema.
   publisher: 'paul-f-maxson', // Organization name used for SEO schema
+  publisherLogo: "https://avatars3.githubusercontent.com/u/16723736?s=400&v=4",
   siteDescription: `Paul Maxson's portfolio and public profile`,
   siteUrl: 'https://paulfm.netlify.com', // Site domain. Do not include a trailing slash! If you wish to use a path prefix you can read more about that here: https://www.gatsbyjs.org/docs/path-prefix/
   piecesPerHomePage: 10, // Number of pieces shown on the 1st page of of the index.js template (home page)

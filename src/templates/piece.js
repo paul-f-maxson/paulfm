@@ -41,7 +41,7 @@ const PieceTemplate = ({ data, pageContext }) => {
     additionalSchemaOrgJSONLD: portfolioPieceSchema({
       title,
       slug,
-      imageURL: mainImage.ogimg.src,
+      imageURL: `https:${mainImage.ogimg.src}`,
       imageWidth: mainImage.ogimg.width,
       imageHeight: mainImage.ogimg.height,
       description: shortDescription,

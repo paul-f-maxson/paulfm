@@ -4,9 +4,9 @@ import siteConfig from '../utils/siteConfig'
 export default ({
   title,
   slug,
-  imageURL,
-  imgWidth,
-  imgHeight,
+  imageUrl,
+  imageWidth,
+  imageHeight,
   description,
   wordCount,
   timeToRead,
@@ -46,9 +46,9 @@ export default ({
       articleBody: body,
       image: {
         '@type': 'ImageObject',
-        url: imageURL,
-        width: imgWidth,
-        height: imgHeight,
+        url: imageUrl,
+        width: imageWidth,
+        height: imageHeight,
       },
       author: {
         '@type': 'Person',
@@ -56,6 +56,15 @@ export default ({
         url: siteConfig.authorUrl,
       },
       datePublished: publicationDateISO,
+      publisher: {
+        '@type': 'Organization',
+        name: siteConfig.publisher,
+        url: siteConfig.authorUrl,
+        logo: {
+          '@type': 'ImageObject',
+          url: siteConfig.publisherLogo,
+        }
+      },
       mainEntity: {
         '@type': 'WebApplication',
         '@id': repoLink,
@@ -66,8 +75,8 @@ export default ({
           name: siteConfig.author,
           url: siteConfig.authorUrl,
         },
-        applicationCategory: "Web App",
-        operatingSystem: "any",
+        applicationCategory: 'Web App',
+        operatingSystem: 'any',
         discussionURL: `${repoLink}/issues`,
         url: pieceLink,
         mainEntityOfPage: `${siteConfig.siteUrl}/${slug}`,
