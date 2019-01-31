@@ -28,6 +28,10 @@ const AboutTemplate = ({ data }) => {
       fullName,
       shortBio: shortBio.childMarkdownRemark.rawMarkdownBody,
       timeToRead: `P${bio.childMarkdownRemark.timeToRead}M`,
+      imageUrl: profilePicture.ogimg.src,
+      imageWidth: profilePicture.ogimg.width,
+      imageHeight: profilePicture.ogimg.height,
+      imageCaption: profilePictureAttribution,
       body: bio.childMarkdownRemark.rawMarkdownBody,
     }),
   }

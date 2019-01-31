@@ -44,7 +44,7 @@ export default ({
       wordCount: wordCount,
       timeRequired: `P${timeToRead}M`,
       articleBody: body,
-      imageURL: {
+      image: {
         '@type': 'ImageObject',
         url: imageURL,
         width: imgWidth,
@@ -53,11 +53,6 @@ export default ({
       author: {
         '@type': 'Person',
         name: siteConfig.author,
-        url: siteConfig.authorUrl,
-      },
-      publisher: {
-        '@type': 'Organization',
-        name: siteConfig.publisher,
         url: siteConfig.authorUrl,
       },
       datePublished: publicationDateISO,
@@ -71,6 +66,8 @@ export default ({
           name: siteConfig.author,
           url: siteConfig.authorUrl,
         },
+        applicationCategory: "Web App",
+        operatingSystem: "any",
         discussionURL: `${repoLink}/issues`,
         url: pieceLink,
         mainEntityOfPage: `${siteConfig.siteUrl}/${slug}`,

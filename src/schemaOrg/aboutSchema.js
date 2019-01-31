@@ -1,6 +1,6 @@
 import siteConfig from '../utils/siteConfig'
 
-export default ({ fullName, shortBio, timeToRead, body }) => [
+export default ({ fullName, shortBio, timeToRead, imageUrl, imageWidth, imageHeight, imageCaption, body }) => [
   {
     '@context': 'http://schema.org',
     '@type': 'BreadcrumbList',
@@ -27,6 +27,13 @@ export default ({ fullName, shortBio, timeToRead, body }) => [
       mainEntityofPage: `${siteConfig.siteUrl}/about`,
       additionalName: fullName,
       description: shortBio,
+    },
+    image: {
+      '@type': 'ImageObject',
+      url: imageUrl,
+      width: imageWidth,
+      height: imageHeight,
+      caption: imageCaption,
     },
     text: body,
     timeRequired: timeToRead,
